@@ -22,7 +22,7 @@ exports.controller = function(req, res, next) {
 	var self = this;
 	
 	self.index = function() {
-		if (!req.require_authentication()) { return; }
+		//if (!req.require_authentication()) { return; }
 		
 		if (req.body.content) {
 		  var message = req.body.content;
