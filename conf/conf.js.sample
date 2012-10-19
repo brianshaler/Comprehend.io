@@ -1,0 +1,46 @@
+var env = "development";
+var envs = {};
+
+// Default Environment (Overridden by below environments)
+var conf = {
+  db: "mongodb://localhost/comprehend-io",
+  port: 3000,
+  live: false,
+  secret: 'secret'
+};
+
+
+// Development Environment
+envs.development = {
+  db: "mongodb://localhost/comprehend-io-dev",
+  base_url: "http://comprehend.io:3000",
+  port: 3000,
+  live: false,
+  secret: 'dev_secret_CHANGE_ME'
+};
+
+
+// Production Environment
+envs.production = {
+  db: "mongodb://localhost/comprehend-io",
+  base_url: "http://comprehend.io",
+  port: 80,
+  live: true,
+  secret: 'production_secret_CHANGE_ME'
+};
+
+
+// Testing environment
+envs.test = {
+  db: "mongodb://localhost/comprehend-io-test",
+  port: 3000,
+  live: false
+};
+
+
+// Load selected environment settings on top of default settings
+for (var k in envs[env]) {
+  conf[k] = envs[env][k];
+}
+
+exports.conf = conf;

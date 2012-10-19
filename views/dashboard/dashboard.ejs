@@ -1,0 +1,25 @@
+<h1>Dashboard</h1>
+<form method="post" action="/comprehend" onsubmit="javascript: return test();">
+  <textarea name="content" id="content" style="width: 500px; height: 100px;"></textarea>
+  <input id="test_button" type="button" value="test" />
+</form>
+
+<div id="output"></div>
+
+
+<script>
+$("#test_button").click(test);
+function test (e) {
+  if (e && e.preventDefault) {
+    e.preventDefault();
+  }
+  console.log("Content: "+$("#content").val());
+  $.post("/comprehend", {content: $("#content").val()}, function (data) {
+  console.log("Done: ");
+    console.log(data);
+    $("#output").html(JSON.stringify(data));
+  });
+  return false;
+}
+</script>
+

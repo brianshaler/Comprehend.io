@@ -1,0 +1,9 @@
+<h1>Login</h1>
+<% errors.forEach(function (error) { %>
+<div><%= error %></div>
+<% }); %>
+<form method="post" action="/account/login">
+  User name: <input type="text" name="user_name" /><br />
+  Password: <input type="password" name="password" /><br />
+  <input type="submit" value="Login" />
+</form>
