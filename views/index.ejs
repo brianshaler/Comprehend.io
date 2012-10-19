@@ -1,1 +1,25 @@
 <p><a href="/account/login">login</a> | <a href="/account/signup">create account</a></p>
+<hr />
+<h4>Or just test it out:</h4>
+
+
+<form method="post" action="/comprehend" onsubmit="javascript: return test();">
+  <textarea name="content" id="content" style="width: 500px; height: 100px;">Type or paste some content here, then click Comprehend.</textarea>
+  <input id="test_button" type="button" value="Comprehend" />
+</form>
+
+<div id="output"></div>
+
+
+<script>
+$("#test_button").click(test);
+function test (e) {
+  if (e && e.preventDefault) {
+    e.preventDefault();
+  }
+  $.post("/comprehend", {content: $("#content").val()}, function (data) {
+    $("#output").html(JSON.stringify(data));
+  });
+  return false;
+}
+</script>
