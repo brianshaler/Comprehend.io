@@ -92,16 +92,20 @@ exports.controller = function(req, res, next) {
   		// Check topics for phrase matches
   		function check_phrases() {
   			//console.log(phrases);
-  			Topic.find()
-  				.or(phrases)
-  				.run(function(err, _topics) {
-  				if (!err && _topics) {
-  					_topics.forEach(function(topic) {
-  						merge(words, topic.text);
-  					});
-  				}
+  			if (phrases.length > 0) {
+    			Topic.find()
+    				.or(phrases)
+    				.run(function(err, _topics) {
+    				if (!err && _topics) {
+    					_topics.forEach(function(topic) {
+    						merge(words, topic.text);
+    					});
+    				}
+    				remove_topics_from_words();
+    			});
+  			} else {
   				remove_topics_from_words();
-  			});
+			  }
   		}
       
   		function remove_topics_from_words () {
