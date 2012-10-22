@@ -17,7 +17,7 @@ function test (e) {
   $.post("/comprehend", {content: $("#content").val()}, function (data) {
   console.log("Done: ");
     console.log(data);
-    $("#output").html(JSON.stringify(data));
+    $("#output").html(JSON.stringify(data, null, 2));
   });
   return false;
 }
